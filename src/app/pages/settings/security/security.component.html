@@ -1,0 +1,64 @@
+<app-top-banner title="Security" />
+
+<div class="flex flex-col gap-4 xxl:gap-6">
+  <!-- Change Password -->
+  <div class="box xl:p-8 xxl:p-10">
+    <h4 class="h4 bb-dashed pb-4 mb-4 md:mb-6 md:pb-6">Change Password</h4>
+    <form class="mt-6 xl:mt-8 grid grid-cols-2 gap-4 xxxl:gap-6">
+      <div class="col-span-2">
+        <app-password-input label="Old Password" />
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <app-password-input label="New Password" />
+      </div>
+      <div class="col-span-2 md:col-span-1">
+        <app-password-input label="Confirm New Password" />
+      </div>
+      <div class="col-span-2">
+        <p class="font-medium text-lg mb-4">New password must contain :</p>
+        <ul class="marker:text-primary list-disc flex flex-col gap-3 list-inside">
+          <li>At least 8 characters</li>
+          <li>At least 1 lower letter (a-z)</li>
+          <li>At least 1 uppercase letter(A-Z)</li>
+          <li>At least 1 number (0-9)</li>
+          <li>At least 1 special characters</li>
+        </ul>
+      </div>
+      <div class="col-span-2 flex gap-4">
+        <button class="btn px-5">Save Changes</button>
+        <button class="btn-outline px-5">Cancel</button>
+      </div>
+    </form>
+  </div>
+  <!-- Two factor -->
+  <div class="box xl:p-8">
+    <div class="flex justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6">
+      <h4 class="h4">Two-Factor Authentication</h4>
+      <app-options-horiz />
+    </div>
+    <div class="grid grid-cols-2 md:divide-x rtl:md:divide-x-reverse max-md:gap-4 divide-dashed divide-primary">
+      <div class="col-span-2 md:col-span-1 md:ltr:pr-5 md:rtl:pl-5 flex flex-col gap-4 xxl:gap-6">
+        @for (item of twofactorsettings1; track $index) {
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="font-medium text-base md:text-lg xl:text-xl mb-2">{{ item.title }}</p>
+            <span class="text-xs md:text-sm"> {{ item.desc }} </span>
+          </div>
+          <app-switch [label]="item.title" [isChecked]="item.status" />
+        </div>
+        }
+      </div>
+      <div class="col-span-2 md:col-span-1 md:ltr:pl-5 md:rtl:pr-5 flex flex-col gap-4 xxl:gap-6">
+        @for (item of twofactorsettings2; track $index) {
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="font-medium text-base md:text-lg xl:text-xl mb-2">{{ item.title }}</p>
+            <span class="text-xs md:text-sm"> {{ item.desc }} </span>
+          </div>
+          <app-switch [label]="item.title" [isChecked]="item.status" />
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+</div>

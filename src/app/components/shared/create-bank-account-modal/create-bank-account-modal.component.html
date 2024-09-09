@@ -1,0 +1,43 @@
+<div class=" bg-n0 dark:bg-bg4 box w-[310px] max-h-[80vh] overflow-y-auto md:w-[30rem]">
+  <div class="flex justify-between items-center bb-dashed pb-6 mb-6">
+    <h4>Create Bank Account 1</h4>
+    <i (click)="closeModal()" class="las cursor-pointer la-times"></i>
+  </div>
+  <div class="bb-dashed pb-4 mb-4 lg:mb-6 lg:pb-6 flex flex-col pt-6 overflow-y-auto">
+    <div class="box border border-n30 dark:border-n500 bg-primary/5 dark:bg-bg3 xl:p-3 xxl:p-4 spend" [ngClass]="{ 'order-1': !flipped, 'order-3': flipped }">
+      <div class="flex justify-between gap-3 bb-dashed items-center text-sm mb-4 pb-4">
+        <p>Spend</p>
+        <p>Balance : 10,000 USD</p>
+      </div>
+      <div class="flex justify-between items-center text-xl gap-4 font-medium">
+        <input type="number" class="w-20 bg-transparent p-0 border-none" placeholder="0.00" />
+        <p class="shrink-0">$ USD</p>
+      </div>
+    </div>
+    <button (click)="handleFlip()" class="p-2 border order-2 border-n30 dark:border-n500 self-center -my-4 relative z-[2] rounded-lg bg-n0 dark:bg-bg4 text-primary changeOrderBtn">
+      <i class="las la-exchange-alt rotate-90"></i>
+    </button>
+    <div class="box border border-n30 dark:border-n500 bg-primary/5 dark:bg-bg3 xl:p-3 xxl:p-4 receive" [ngClass]="{ 'order-3': !flipped, 'order-1': flipped }">
+      <div class="flex justify-between gap-3 bb-dashed items-center text-sm mb-4 pb-4">
+        <p>Receive</p>
+        <p>Balance : 10,000 USD</p>
+      </div>
+      <div class="flex justify-between items-center text-xl gap-4 font-medium">
+        <input type="number" class="w-20 bg-transparent p-0 border-none" placeholder="0.00" />
+        <p class="shrink-0">€ EURO</p>
+      </div>
+    </div>
+  </div>
+  <div>
+    <p class="text-lg font-medium mb-6">Payment Method</p>
+    <div class="border border-primary border-dashed bg-primary/5 rounded-lg p-3 flex items-center gap-4 mb-6 lg:mb-8">
+      <img src="assets/images/card-sm-1.png" width="60" height="40" alt="card" />
+      <div>
+        <p class="font-medium mb-1">John Snow - Metal</p>
+        <span class="text-xs">**4291 - Exp: 12/26</span>
+      </div>
+    </div>
+    <a href="#" class="btn flex justify-center w-full"> Send Now </a>
+  </div>
+</div>
+

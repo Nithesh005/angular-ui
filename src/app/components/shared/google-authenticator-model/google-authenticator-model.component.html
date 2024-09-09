@@ -1,0 +1,40 @@
+<!-- { "translate-y-0 scale-100 opacity-100 my-10": open } -->
+<div class="box max-h-[90vh] w-[310px] sm:w-[450px] md:w-[700px] overflow-y-auto">
+    <div class="relative">
+      <!-- <button (click)="openPaymentModal()" class="ac-modal-close-btn absolute top-0 ltr:right-0 rtl:left-0">
+        <i class="las la-times"></i>
+      </button> -->
+      <div class="bb-dashed mb-4 flex items-center justify-between pb-4 lg:mb-6 lg:pb-6">
+        <h4 class="h4">Google Authenticator</h4>
+        <i (click)="closeModal()" class="las cursor-pointer la-times"></i>
+      </div>
+      <form>
+        
+        <div class="mt-6 grid grid-cols-2 gap-4 xl:mt-8 xxxl:gap-6">
+          <div style="
+    display: flex;
+    justify-content: center;
+    width: 200% !important;
+">    
+          <img src="assets/images/qr-code.png" alt="" style="
+          width: 50%;
+      ">
+        </div>
+
+          <div class="col-span-2">
+            <label for="amount" class="mb-4 block font-medium md:text-lg text-center">Enter the Six digit code from your authentication app</label>
+            <!-- <input type="number" class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3" placeholder="Enter Amount" id="amount" required /> -->
+            <ng-otp-input  [config]="{length:6}" style="
+            display: flex;
+            justify-content: center;
+        "></ng-otp-input>
+          </div>
+        
+          <div class="col-span-2 mt-4">
+            <button class="btn flex w-full justify-center" type="submit">Verify</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

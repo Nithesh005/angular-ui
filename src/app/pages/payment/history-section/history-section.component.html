@@ -1,0 +1,106 @@
+<app-top-banner title="History" />
+
+<div class="box col-span-12 lg:col-span-6">
+  <div class="flex flex-wrap gap-4 justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6">
+    <h4 class="h4"></h4>
+    <div class="flex items-center gap-4 flex-wrap grow sm:justify-end">
+      <form class="bg-primary/5 dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-primary p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full">
+        <input type="text" id="transaction-search" placeholder="Search" class="bg-transparent border-none text-sm ltr:pl-4 rtl:pr-4 py-1 w-full" />
+        <button class="bg-primary shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0">
+          <i class="las la-search text-lg"></i>
+        </button>
+      </form>
+      <div class="flex items-center gap-3 whitespace-nowrap">
+        <span>Sort By : </span>
+        <app-dropdown />
+      </div>
+    </div>
+  </div>
+  <div class="overflow-x-auto pb-4 lg:pb-6">
+    <table class="w-full whitespace-nowrap select-all-table" id="transactionTable1">
+      <thead>
+        <tr class="bg-secondary1/5 dark:bg-bg3">
+          <th class="text-start !px-6 w-14 !py-5">
+            <input (click)="transactions.handleSelect($event)" [checked]="areAllItemsChecked()" name="select-all" type="checkbox" id="selectAllCheckbox" class="accent-secondary1 scale-125 focus:border-none focus:shadow-none focus:outline-none" />
+          </th>
+          <th (click)="transactions.sortData('title')" class="text-start !py-5 px-6 min-w-[130px] cursor-pointer">
+            <div class="flex items-center gap-1">customerName<i class="las la-exchange-alt rotate-90 text-base"></i></div>
+          </th>
+          <!-- <th (click)="transactions.sortData('invoice')" class="text-start !py-5 min-w-[100px] cursor-pointer">Invoice <i class="las la-exchange-alt rotate-90 text-base"></i></th> -->
+          <th (click)="transactions.sortData('medium')" class="text-start !py-5 min-w-[100px] cursor-pointer">
+            <div class="flex items-center gap-1">customerMobile<i class="las la-exchange-alt rotate-90 text-base"></i></div>
+          </th>
+          <th (click)="transactions.sortData('amount')" class="text-start !py-5 min-w-[130px] cursor-pointer">
+            <div class="flex items-center gap-1">merchantOrderNo<i class="las la-exchange-alt rotate-90 text-base"></i></div>
+          </th>
+          <th (click)="transactions.sortData('amount')" class="text-start !py-5 min-w-[130px] cursor-pointer">
+            <div class="flex items-center gap-1">amount<i class="las la-exchange-alt rotate-90 text-base"></i></div>
+          </th>
+          <th (click)="transactions.sortData('amount')" class="text-start !py-5 min-w-[130px] cursor-pointer">
+            <div class="flex items-center gap-1">expiry<i class="las la-exchange-alt rotate-90 text-base"></i></div>
+          </th>
+          <th (click)="transactions.sortData('status')" class="text-start !py-5 cursor-pointer">
+            <div class="flex items-center gap-1">Status <i class="las la-exchange-alt rotate-90 text-base"></i></div>
+          </th>
+          <th class="text-center !py-5">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (item of transactions.paginatedData; track item.id;let i = $index) {
+        <tr class="even:bg-secondary1/5 dark:even:bg-bg3">
+          <td class="text-start !px-6">
+            <input (change)="transactions.handleSelect($event)" type="checkbox" [checked]="item.isChecked" class="accent-secondary1 scale-125" [name]="item.title" />
+          </td>
+          <td class="py-2 px-6">
+            <div class="flex items-center gap-3">
+              <!-- <img [src]="item.icon" width="32" height="32" class="rounded-full" alt="  ment medium icon" /> -->
+              <div>
+                <p class="font-medium mb-1">{{ item.title }}</p>
+                <span class="text-xs"> {{ item.time }} </span>
+              </div>
+            </div>
+          </td>
+          <td class="py-2">{{ item.invoice }}</td>
+          <td class="py-2">{{ item.medium }}</td>
+          <td class="py-2">₹{{ item.amount.toLocaleString() }}</td>
+          <td class="py-2">2024/8/31</td>
+          <td class="py-2">
+            <span
+              [ngClass]="{ 'text-primary bg-primary/10': item.status == 'successful', 'text-secondary2 bg-secondary2/20': item.status == 'cancelled', 'text-secondary3 bg-secondary3/10': item.status == 'pending' }"
+              class="block w-28 rounded-[30px] border border-n30 bg-primary/10 py-2 text-center text-xs text-primary dark:border-n500 dark:bg-bg3 xxl:w-36"
+            >
+              {{ item.status }}
+            </span>
+          </td>
+          <td class="py-2">
+            <div class="flex justify-center">
+              <app-options-vertical></app-options-vertical>
+            </div>
+          </td>
+        </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap">
+    <p>Showing {{ transactions.startIndex + 1 }} to {{ transactions.endIndex + 1 }} of {{ transactions.totalData }} entries</p>
+    <ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+      <li>
+        <button [disabled]="transactions.currentPage == 1" (click)="transactions.prevPage()" class="hover:bg-primary text-primary rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-primary">
+          <i class="las la-angle-left text-lg"></i>
+        </button>
+      </li>
+      <li *ngFor="let page of pages">
+        <button (click)="transactions.paginate(page)" [ngClass]="{ 'bg-primary !text-n0': transactions.currentPage == page }" class="hover:bg-primary bg-primary hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-primary items-center rounded-full justify-center border-primary">
+          {{ page }}
+        </button>
+      </li>
+      <li>
+        <button [disabled]="transactions.currentPage == transactions.totalPages" (click)="transactions.nextPage()" class="hover:bg-primary text-primary hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-primary">
+          <i class="las la-angle-right text-lg"></i>
+        </button>
+      </li>
+    </ul>
+  </div>
+</div>

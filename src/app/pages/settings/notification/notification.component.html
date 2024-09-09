@@ -1,0 +1,21 @@
+<app-top-banner title="Notification" />
+
+<div class="grid grid-cols-2 gap-4 xxl:gap-6">
+  <div *ngFor="let item of notificationsData | keyvalue" class="box xl:p-8 col-span-2 md:col-span-1">
+    <div class="flex justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6">
+      <h4 class="h4">{{ item.key }}</h4>
+      <app-options-horiz />
+    </div>
+    <div class="flex flex-col gap-4 xl:gap-6">
+      @for (option of item.value; track option.id) {
+      <div class="flex items-center gap-3 justify-between">
+        <div>
+          <p class="font-medium text-base sm:text-lg lg:text-xl mb-2">{{ option.title }}</p>
+          <span class="text-xs md:text-sm">{{ option.desc }}</span>
+        </div>
+        <app-switch [label]="option.title" [isChecked]="option.status" />
+      </div>
+      }
+    </div>
+  </div>
+</div>

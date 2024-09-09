@@ -1,0 +1,269 @@
+<app-top-banner title="Payment Overview" />
+<div class="grid grid-cols-12 gap-4 xxl:gap-6">
+  <div class="col-span-12 md:col-span-7 xxl:col-span-8">
+    <!-- Payment Actions -->
+    <div class="grid grid-cols-12 gap-4 xxl:gap-6 p-4 box min-[1880px]:p-6 mb-4 xxl:mb-6">
+      @for (item of actionsData; track $index) {
+      <div (click)="openModal()" class="col-span-12 cursor-pointer border border-dashed qt-modal-btn duration-300 border-transparent hover:border-primary lg:col-span-6 xxxl:col-span-4 box bg-primary/5 dark:bg-bg3 flex items-center gap-4 4xl:gap-6 xl:p-3 min-[1880px]:p-6">
+        <span class="bg-n0 dark:bg-bg4 w-10 h-10 xxl:w-16 xxl:h-16 flex items-center justify-center shrink-0 rounded-full shadow-[0px_6px_40px_0px_rgba(0,0,0,0.02)]">
+          <i [class]="item.icon"></i>
+        </span>
+        <div>
+          <h5 class="text-base xxl:text-lg 4xl:text-xl font-medium mb-1 xxl:mb-2">{{ item.title }}</h5>
+          <span class="text-xs xxl:text-sm"> {{ item.desc }} </span>
+        </div>
+      </div>
+      }
+    </div>
+    <!-- payment Overview -->
+    <div class="box overflow-x-hidden">
+      <div class="flex items-center flex-wrap justify-between gap-3 bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6">
+        <h4 class="h4">Payment Overview</h4>
+        <div class="flex items-center gap-3">
+          <span>Sort By : </span>
+          <app-dropdown />
+        </div>
+      </div>
+      <apx-chart
+        [chart]="overviewChartOptions.chart"
+        [stroke]="overviewChartOptions.stroke!"
+        [dataLabels]="overviewChartOptions.dataLabels!"
+        [markers]="overviewChartOptions.markers!"
+        [colors]="overviewChartOptions.colors!"
+        [xaxis]="overviewChartOptions.xaxis!"
+        [yaxis]="overviewChartOptions.yaxis!"
+        [tooltip]="overviewChartOptions.tooltip!"
+        [fill]="overviewChartOptions.fill!"
+        [legend]="overviewChartOptions.legend!"
+        [responsive]="overviewChartOptions.responsive"
+        [series]="overviewChartOptions.series"
+        [plotOptions]="overviewChartOptions.plotOptions!"
+      />
+    </div>
+  </div>
+  <div class="col-span-12 md:col-span-5 xxl:col-span-4">
+    <!-- Payment Providers -->
+    <div class="box">
+      <div class="flex justify-between items-center bb-dashed border-secondary1/20 pb-4 mb-4 lg:pb-6 lg:mb-6">
+        <h4 class="h4">Payment Providers</h4>
+        <app-options-horiz />
+      </div>
+      <ul class="flex flex-col gap-4 lg:gap-6">
+        <li>
+          <a href="#" class="flex justify-between items-center gap-2">
+            <div class="flex items-center gap-3 sm:gap-4 xxl:gap-6">
+              <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+                <i class="las la-gas-pump"></i>
+              </span>
+              <div>
+                <p class="text-lg font-medium">Utilities</p>
+                <span class="text-xs">Electricity, gas, water, sewage, trash disposal</span>
+              </div>
+            </div>
+            <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+              <i class="las la-arrow-right"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex justify-between items-center gap-2">
+            <div class="flex items-center gap-3 sm:gap-4 xxl:gap-6">
+              <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+                <i class="las la-tv"></i>
+              </span>
+              <div>
+                <p class="text-lg font-medium">Communication</p>
+                <span class="text-xs">Telephone, internet, cable TV</span>
+              </div>
+            </div>
+            <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+              <i class="las la-arrow-right"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex justify-between items-center gap-2">
+            <div class="flex items-center gap-3 sm:gap-4 xxl:gap-6">
+              <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+                <i class="las la-home"></i>
+              </span>
+              <div>
+                <p class="text-lg font-medium">Housing</p>
+                <span class="text-xs">Rent, mortgage, property taxes, insurance</span>
+              </div>
+            </div>
+            <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+              <i class="las la-arrow-right"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex justify-between items-center gap-2">
+            <div class="flex items-center gap-3 sm:gap-4 xxl:gap-6">
+              <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+                <i class="las la-car"></i>
+              </span>
+              <div>
+                <p class="text-lg font-medium">Transportation</p>
+                <span class="text-xs">Car loan, car insurance, gasoline</span>
+              </div>
+            </div>
+            <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+              <i class="las la-arrow-right"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex justify-between items-center gap-2">
+            <div class="flex items-center gap-3 sm:gap-4 xxl:gap-6">
+              <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+                <i class="las la-hamburger"></i>
+              </span>
+              <div>
+                <p class="text-lg font-medium">Food</p>
+                <span class="text-xs">Groceries, dining out</span>
+              </div>
+            </div>
+            <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+              <i class="las la-arrow-right"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex justify-between items-center gap-2">
+            <div class="flex items-center gap-3 sm:gap-4 xxl:gap-6">
+              <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+                <i class="las la-heartbeat"></i>
+              </span>
+              <div>
+                <p class="text-lg font-medium">Healthcare</p>
+                <span class="text-xs">Health insurance, medical bills</span>
+              </div>
+            </div>
+            <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+              <i class="las la-arrow-right"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="flex justify-between items-center gap-2">
+            <div class="flex items-center gap-3 sm:gap-4 xxl:gap-6">
+              <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+                <i class="las la-graduation-cap"></i>
+              </span>
+              <div>
+                <p class="text-lg font-medium">Education</p>
+                <span class="text-xs">Tuition, fees, books, supplies</span>
+              </div>
+            </div>
+            <span class="border border-n30 dark:border-n500 bg-primary/5 w-10 h-10 flex items-center justify-center xxl:w-14 xxl:h-14 shrink-0 rounded-full">
+              <i class="las la-arrow-right"></i>
+            </span>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="col-span-12">
+    <!-- Recent Payments -->
+    <div class="box col-span-12 lg:col-span-6">
+      <div class="flex flex-wrap gap-4 justify-between items-center bb-dashed mb-4 pb-4 lg:mb-6 lg:pb-6">
+        <h4 class="h4">Recent Payments</h4>
+        <div class="flex flex-wrap grow sm:justify-end items-center gap-4">
+          <form class="bg-primary/5 dark:bg-bg3 border border-n30 dark:border-n500 flex gap-3 rounded-[30px] focus-within:border-primary p-1 items-center justify-between min-w-[200px] xxl:max-w-[319px] w-full">
+            <input type="text" placeholder="Search" class="bg-transparent border-none text-sm ltr:pl-4 rtl:pr-4 py-1 w-full" />
+            <button class="bg-primary shrink-0 rounded-full w-7 h-7 lg:w-8 lg:h-8 flex justify-center items-center text-n0">
+              <i class="las la-search text-lg"></i>
+            </button>
+          </form>
+          <div class="flex items-center gap-3 whitespace-nowrap">
+            <span>Sort By : </span>
+            <app-dropdown />
+          </div>
+        </div>
+      </div>
+      <div class="overflow-x-auto mb-4 lg:mb-6">
+        <table class="w-full whitespace-nowrap">
+          <thead>
+            <tr class="bg-primary/5 dark:bg-bg3">
+              <th (click)="recentPayments.sortData('title')" class="text-start py-5 px-6 cursor-pointer min-w-[250px]">
+                <div class="flex items-center gap-1">Title <i class="las la-exchange-alt rotate-90 text-base"></i></div>
+              </th>
+              <th (click)="recentPayments.sortData('invoice')" class="text-start py-5 min-w-[100px]">Invoice <i class="las la-exchange-alt rotate-90 text-base"></i></th>
+              <th (click)="recentPayments.sortData('medium')" class="text-start py-5 min-w-[120px] cursor-pointer">
+                <div class="flex items-center gap-1">Medium <i class="las la-exchange-alt rotate-90 text-base"></i></div>
+              </th>
+              <th (click)="recentPayments.sortData('date')" class="text-start py-5 min-w-[130px]">Date <i class="las la-exchange-alt rotate-90 text-base"></i></th>
+              <th (click)="recentPayments.sortData('money')" class="text-start py-5 min-w-[130px] cursor-pointer">
+                <div class="flex items-center gap-1">Money <i class="las la-exchange-alt rotate-90 text-base"></i></div>
+              </th>
+              <th (click)="recentPayments.sortData('time')" class="text-start py-5 min-w-[130px]">Time <i class="las la-exchange-alt rotate-90 text-base"></i></th>
+              <th (click)="recentPayments.sortData('status')" class="text-start py-5 cursor-pointer">
+                <div class="flex items-center gap-1">Status <i class="las la-exchange-alt rotate-90 text-base"></i></div>
+              </th>
+              <th class="text-center p-5">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (item of recentPayments.paginatedData; track item.id;let i = $index) {
+            <tr class="hover:bg-primary/5 dark:hover:bg-bg3 duration-500 border-b border-n30 dark:border-n500 first:border-t">
+              <td class="py-5 px-6">
+                <div class="flex items-center gap-3">
+                  <i class="las la-file text-primary"></i>
+                  <span class="font-medium"> {{ item.title }} </span>
+                </div>
+              </td>
+              <td class="py-5">
+                <p class="font-medium">{{ item.invoice }}</p>
+              </td>
+              <td class="py-5">
+                <span> {{ item.medium }} </span>
+              </td>
+              <td class="py-5">{{ item.date }}</td>
+              <td class="py-5">$ {{ item.money.toLocaleString() }}</td>
+              <td>{{ item.time }}</td>
+              <td class="py-5">
+                <span
+                  [ngClass]="{ 'text-primary bg-primary/10': item.status == 'active', 'text-secondary2 bg-secondary2/20': item.status == 'cancelled', 'text-secondary3 bg-secondary3/10': item.status == 'paused' }"
+                  class="block w-28 rounded-[30px] border border-n30 bg-primary/10 py-2 text-center text-xs text-primary dark:border-n500 dark:bg-bg3 xxl:w-36"
+                >
+                  {{ item.status }}
+                </span>
+              </td>
+              <td class="py-5">
+                <div class="flex justify-center">
+                  <app-options-vertical></app-options-vertical>
+                </div>
+              </td>
+            </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+      <div class="flex col-span-12 gap-4 sm:justify-between justify-center items-center flex-wrap">
+        <p>Showing {{ recentPayments.startIndex + 1 }} to {{ recentPayments.endIndex + 1 }} of {{ recentPayments.totalData }} entries</p>
+        <ul class="flex gap-2 md:gap-3 flex-wrap md:font-semibold items-center">
+          <li>
+            <button [disabled]="recentPayments.currentPage == 1" (click)="recentPayments.prevPage()" class="hover:bg-primary text-primary rtl:rotate-180 hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-primary">
+              <i class="las la-angle-left text-lg"></i>
+            </button>
+          </li>
+          <li *ngFor="let page of pages">
+            <button
+              (click)="recentPayments.paginate(page)"
+              [ngClass]="{ 'bg-primary !text-n0': recentPayments.currentPage == page }"
+              class="hover:bg-primary bg-primary hover:text-n0 border md:w-10 duration-300 md:h-10 w-8 h-8 flex text-primary items-center rounded-full justify-center border-primary"
+            >
+              {{ page }}
+            </button>
+          </li>
+          <li>
+            <button [disabled]="recentPayments.currentPage == recentPayments.totalPages" (click)="recentPayments.nextPage()" class="hover:bg-primary text-primary hover:text-n0 rtl:rotate-180 border md:w-10 duration-300 md:h-10 w-8 h-8 flex items-center rounded-full justify-center border-primary">
+              <i class="las la-angle-right text-lg"></i>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

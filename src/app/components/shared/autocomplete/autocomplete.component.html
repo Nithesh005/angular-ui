@@ -1,0 +1,29 @@
+<div ref="target" class="relative">
+  <div [class]="btnClass" (click)="toggleOpen($event)">
+    <div class="flex items-center gap-2 text-sm" *ngIf="selected">
+      {{ selected !== 'Select' ? selected : 'Select your option' }}
+    </div>
+    <div class="flex items-center gap-2 text-sm" *ngIf="!selected">
+      {{ 'Select your option' }}
+    </div>
+    <i class="las la-angle-down duration-300 text-sm" [ngClass]="isOpen ? 'rotate-180' : ''"></i>
+  </div>
+  <div [ngClass]="isOpen ? 'show' : 'hide'" [class]="dropdownClass">
+    <div class="px-4 py-2 text-sm">
+      <input 
+        type="text" 
+        [(ngModel)]="filter" 
+        (input)="filterOptions()" 
+        class="w-full px-2 py-1 border rounded-md"
+        placeholder="Search...">
+    </div>
+    <ul class="max-h-40 overflow-y-auto max-w-md"> <!-- Add max-w-md here or your desired max width class -->
+      <li *ngFor="let item of filteredOptions; let i = index" (click)="selectOption(item)" 
+        class="px-4 py-2 cursor-pointer text-sm rounded-md duration-300" 
+        [ngClass]="selected == item ? 'bg-primary/5' : ''" 
+        [class.highlight]="i === 0 && filter">
+        {{ item }}
+      </li>
+    </ul>
+  </div>
+</div>

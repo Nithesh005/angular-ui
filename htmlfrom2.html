@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open Payment Page</title>
+</head>
+<body>
+    <button id="submit-btn">Submit</button>
+
+    <script>
+        document.getElementById('submit-btn').addEventListener('click', function() {
+            fetch('http://127.0.0.1:7000/tyche/orderapi', {
+                method: 'POST'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.redirectUrl) {
+                    // Open the URL in a new tab
+                    window.open(data.redirectUrl, '_blank');
+                } else {
+                    console.error('Redirect URL not found');
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<app-top-banner title="Create Link" />
+<div class="box mb-4 xxxl:mb-6">
+  <div class="mb-6 pb-6 bb-dashed flex justify-between items-center">
+    <h4 class="h4">Create New Link</h4>
+    <app-options-horiz />
+  </div>
+  <form class="grid grid-cols-2 gap-4 xxxl:gap-6">
+    <div class="col-span-2 md:col-span-1">
+      <label for="name" class="mb-4 md:text-lg font-medium block"> MerchantOrderNo </label>
+      <input type="text" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="123" id="name" required />
+    </div>
+    <div class="col-span-2 md:col-span-1">
+      <label for="account" class="mb-4 md:text-lg font-medium block"> Currency </label>
+      <input type="number" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="INR" id="account" required />
+    </div>
+
+    <div class="col-span-2 md:col-span-1">
+      <label for="number" class="md:text-lg font-medium block mb-4"> Amount </label>
+      <input type="number" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="5678.00" id="number" required />
+    </div>
+    <div class="col-span-2 md:col-span-1">
+        <label for="date" class="md:text-lg font-medium block mb-4"> Expiry </label>
+        <div class="relative bg-secondary1/5 py-2.5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl">
+          <p-calendar 
+            [(ngModel)]="date" 
+            [dateFormat]="dateFormat"
+            styleClass="bg-white" 
+            name="date"  
+            placeholder="Select Date" 
+            inputStyleClass="px-5 focus:outline-none !bg-secondary1/5 dark:!bg-bg3 w-full rounded-none focus:shadow-none active:shadow-none" 
+            panelStyleClass="bg-n0 dark:bg-bg3 sm:p-3 rounded-lg">
+          </p-calendar>
+          <i class="las la-calendar absolute ltr:right-4 rtl:left-4 top-1/2 -translate-y-1/2 cursor-pointer"></i>
+        </div>
+      </div>
+   
+    <div class="col-span-2 md:col-span-1">
+      <label for="rate" class="md:text-lg font-medium block mb-4"> Redirect  </label>
+      <input type="number" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="Enter Rate %" id="rate" required />
+    </div>
+
+    <div class="col-span-2 md:col-span-1">
+        <label for="rate" class="md:text-lg font-medium block mb-4"> ReturnUrl  </label>
+        <input type="number" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="http://localhost" id="rate" required />
+      </div>
+    <!-- <div class="col-span-2 md:col-span-1">
+        <label for="date" class="md:text-lg font-medium block mb-4"> Expiry </label>
+        <div class="relative bg-secondary1/5 py-2.5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl">
+          <p-calendar 
+            [(ngModel)]="date" 
+            [dateFormat]="dateFormat"
+            styleClass="bg-white" 
+            name="date"  
+            placeholder="Select Date" 
+            inputStyleClass="px-5 focus:outline-none !bg-secondary1/5 dark:!bg-bg3 w-full rounded-none focus:shadow-none active:shadow-none" 
+            panelStyleClass="bg-n0 dark:bg-bg3 sm:p-3 rounded-lg">
+          </p-calendar>
+          <i class="las la-calendar absolute ltr:right-4 rtl:left-4 top-1/2 -translate-y-1/2 cursor-pointer"></i>
+        </div>
+      </div> -->
+      
+    <div class="col-span-2 md:col-span-1">
+      <label for="deposits" class="md:text-lg font-medium block mb-4"> CustomerName </label>
+      <input type="text" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="Esak test" id="deposits" required />
+    </div>
+    <div class="col-span-2 md:col-span-1">
+      <label for="deposits" class="md:text-lg font-medium block mb-4"> CustomerMobile </label>
+      <input type="number" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="95857633839" id="deposits" required />
+    </div>
+    <div class="col-span-2 md:col-span-1">
+      <label for="deposits" class="md:text-lg font-medium block mb-4"> Description </label>
+      <!-- <input type="number" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3" placeholder="Enter Deposits" id="deposits" required /> -->
+       <textarea name="" id="" class="w-full text-sm bg-secondary1/5 dark:bg-bg3 border border-n30 dark:border-n500 rounded-3xl px-3 md:px-6 py-2 md:py-3"></textarea>
+    </div>
+    <div class="col-span-2 flex gap-4 md:gap-6 mt-2">
+      <button class="btn" type="submit">Create Account</button>
+      <button class="btn-outline" type="reset">Cancel</button>
+    </div>
+  </form>
+</div>

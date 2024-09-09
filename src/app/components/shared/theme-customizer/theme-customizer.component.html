@@ -1,0 +1,52 @@
+<div (click)="toggleCustomizer()" class="z-[60] duration-500" [ngClass]="customizerOpen ? 'fixed inset-0 bg-n900 bg-opacity-50' : ''">
+  <aside (click)="clickCustomizer($event)"
+    class="w-[280px] xxxl:w-[336px] shadow-sm scrollbar-hidden z-[52] overflow-y-auto duration-300 fixed ltr:right-0 ltr:left-auto rtl:left-0 rtl:right-auto h-full bg-n0 dark:bg-bg4 top-0"
+    [ngClass]="customizerOpen ? 'translate-x-0 visible' : 'ltr:translate-x-full rtl:-translate-x-full invisible'"
+  >
+    <div class="p-4 flex justify-between items-center border-b border-n30 dark:border-n500">
+      <div>
+        <h5 class="h5 mb-2">Theme customizer</h5>
+        <p class="text-sm">Customize & Preview in Real Time</p>
+      </div>
+      <button (click)="toggleCustomizer()">
+        <i class="las la-times"></i>
+      </button>
+    </div>
+    <div class="p-4 border-b border-n30 dark:border-n500">
+      <span class="mb-3 text-n60 block text-sm">Themeing </span>
+      <h6 class="h6 mb-3">Color Mode</h6>
+      <div class="flex gap-x-5 justify-between gap-y-3">
+        <p>Dark</p>
+        <label class="relative inline-flex items-center cursor-pointer">
+          <input (change)="toggleDarkMode()" [checked]="colorMode=='dark'" type="checkbox" class="sr-only peer duration-300" />
+          <div
+            class="w-11 h-6 bg-gray-200 peer-focus:outline-none rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary after:duration-300"
+          ></div>
+        </label>
+      </div>
+    </div>
+    <div class="p-4 border-b border-n30 dark:border-n500">
+      <span class="mb-3 text-n60 block text-sm">Layout</span>
+      <h6 class="h6 mb-3">Direction</h6>
+      <div class="flex gap-x-5 gap-y-3 flex-wrap mb-7">
+        <div *ngFor="let dir of directions" class="flex items-center">
+          <button (click)="changeDir(dir)" [ngClass]="currentDir==dir?'bg-primary text-n0 border-primary':''" class="px-5 capitalize py-1 rounded-sm border dark:border-n500">
+            {{ dir }}
+          </button>
+        </div>
+      </div>
+
+      <h6 class="h6 mb-3">Sidebar</h6>
+      <div class="flex gap-x-5 gap-y-3 flex-wrap">
+        <div *ngFor="let layout of layoutList" class="flex items-center">
+          <button (click)="changelayout(layout)" [ngClass]="currentLayout==layout?'bg-primary text-n0 border-primary':''" class="px-5 capitalize py-1 rounded-sm border dark:border-n500">
+            {{ layout }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+</div>
+<button (click)="(toggleCustomizer())" class="fixed ltr:right-4 rtl:left-4 z-50 top-1/2 bg-primary text-n0 w-10 h-10 rounded-full flex items-center justify-center">
+  <i class="las la-cog animate-spin-slow"></i>
+</button>

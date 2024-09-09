@@ -1,0 +1,160 @@
+<!-- { "translate-y-0 scale-100 opacity-100 my-10": open } -->
+<div class="box max-h-[90vh] w-[310px] sm:w-[450px] md:w-[700px] overflow-y-auto">
+    <div class="relative">
+      <button (click)="openPaymentModal()" class="ac-modal-close-btn absolute top-0 ltr:right-0 rtl:left-0">
+        <i class="las la-times"></i>
+      </button>
+      <div class="bb-dashed mb-4 flex items-center justify-between pb-4 lg:mb-6 lg:pb-6">
+        <h4 class="h4">{{title}} Bill</h4>
+      </div>
+      <!-- <form (ngSubmit)="fetch_bill_form_submit()">
+        
+        <div class="mt-6 grid grid-cols-2 gap-4 xl:mt-8 xxxl:gap-6">         
+          <div class="col-span-2">
+            <label for="currency" class="mb-4 block font-medium md:text-lg">State
+                </label>
+            <app-dropdown [options]="currencies" btnClassProps="lg:!py-3 rounded-3xl bg-secondary1/5" dropdownClassProps="w-full"></app-dropdown>
+          </div> 
+          <div class="col-span-2">
+            <label for="currency" class="mb-4 block font-medium md:text-lg">Select your  Board</label>
+            <app-dropdown [options]="billerNames" btnClassProps="lg:!py-3 rounded-3xl bg-secondary1/5" dropdownClassProps="w-full"  (selectionChange)="onBillerNameChange($event)">></app-dropdown>
+          </div>   
+       
+          <div class="col-span-2">
+            <label for="amount" class="mb-4 block font-medium md:text-lg">CA Number </label>
+            <input type="number" class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3" placeholder="Enter Amount" id="amount" required />
+          </div>
+        
+          <div class="col-span-2 mt-4">
+            <button class="btn flex w-full justify-center" type="submit">Fetch Bill</button>
+          </div>
+        </div>
+      </form> -->
+      <!-- <form [formGroup]="paymentForm" (ngSubmit)="fetch_bill_form_submit()">
+          <div class="mt-6 grid grid-cols-2 gap-4 xl:mt-8 xxxl:gap-6">         
+            <div class="col-span-2">
+              <label for="billerName" class="mb-4 block font-medium md:text-lg">Select your Board</label>
+              <app-dropdown 
+                [options]="billerNames" 
+                btnClassProps="lg:!py-3 rounded-3xl bg-secondary1/5" 
+                dropdownClassProps="w-full" 
+                (selectionChange)="onBillerNameChange($event)">
+              </app-dropdown>
+              <div *ngIf="paymentForm.get('billerName').invalid && paymentForm.get('billerName').touched" class="text-red-600">
+                Please select a board.
+              </div>
+            </div>   
+          
+            <div class="col-span-2">
+              <label for="caNumber" class="mb-4 block font-medium md:text-lg">CA Number</label>
+              <input 
+                type="number" 
+                formControlName="caNumber" 
+                class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3" 
+                placeholder="Enter CA Number" 
+                id="caNumber" 
+                required 
+              />
+              <div *ngIf="paymentForm.get('caNumber').invalid && paymentForm.get('caNumber').touched" class="text-red-600">
+                Please enter a valid CA Number.
+              </div>
+            </div>          
+            <div class="col-span-2 mt-4">
+              <button class="btn flex w-full justify-center" type="submit">Fetch Bill</button>
+            </div>
+          </div>
+      </form> -->
+
+      <!-- working code -->
+      <!-- <form [formGroup]="paymentForm" (ngSubmit)="fetch_bill_form_submit()">
+        <div class="mt-6 grid grid-cols-2 gap-4 xl:mt-8 xxxl:gap-6">           
+          <div class="col-span-2">
+            <label for="billerName" class="mb-4 block font-medium md:text-lg">Select your Board</label>
+            <app-dropdown 
+              [options]="billerNames" 
+              btnClassProps="lg:!py-3 rounded-3xl bg-secondary1/5" 
+              dropdownClassProps="w-full" 
+              (selectionChange)="onBillerNameChange($event)">
+            </app-dropdown>
+            <div *ngIf="paymentForm.get('billerName')?.invalid && paymentForm.get('billerName')?.touched" class="text-red-600">
+              Please select a board.
+            </div>
+          </div>         
+          <div *ngFor="let field of customerParams_input_fields" class="col-span-2">
+            <label [for]="field.paramName" class="mb-4 block font-medium md:text-lg">{{ field.paramName }}</label>
+            <input 
+              [type]="field.dataType === 'NUMERIC' ? 'number' : 'text'"
+              [formControlName]="field.paramName" 
+              class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3" 
+              [placeholder]="'Enter ' + field.paramName"
+              [id]="field.paramName"
+              [attr.maxLength]="field.maxLength" 
+              [attr.minLength]="field.minLength"
+              [required]="field.optional === 'false'"
+            />
+            <div *ngIf="paymentForm.get(field.paramName)?.invalid && paymentForm.get(field.paramName)?.touched" class="text-red-600">
+              {{ getErrorMessage(field.paramName, field.regex) }}
+            </div>
+          </div>
+       
+          <div class="col-span-2 mt-4">
+            <button class="btn flex w-full justify-center" type="submit">Fetch Bill</button>
+          </div>
+        </div>
+      </form> -->
+
+      <form [formGroup]="paymentForm" (ngSubmit)="fetch_bill_form_submit()">
+        <div class="mt-6 grid grid-cols-2 gap-4 xl:mt-8 xxxl:gap-6">
+          <!-- Biller Dropdown -->
+          <div class="col-span-2">
+            <label for="billerName" class="mb-4 block font-medium md:text-lg">Select your Board</label>
+            <app-dropdown 
+              [options]="billerNames" 
+              btnClassProps="lg:!py-3 rounded-3xl bg-secondary1/5" 
+              dropdownClassProps="w-full" 
+              (selectionChange)="onBillerNameChange($event)">
+            </app-dropdown>
+            <div *ngIf="paymentForm.get('billerName')?.invalid && paymentForm.get('billerName')?.touched" class="text-red-600">
+              Please select a board.
+            </div>
+          </div>
+      
+          <!-- Dynamic Input Fields Based on API Response -->
+          <div *ngFor="let field of customerParams_input_fields" class="col-span-2">
+            <label [for]="field.paramName" class="mb-4 block font-medium md:text-lg">
+              {{ field.paramName }}
+              <span *ngIf="field.optional === 'true'" class="text-gray-500 text-sm md:text-xs">(Optional)</span>
+            </label>
+                        <input 
+              [type]="field.dataType === 'NUMERIC' ? 'number' : 'text'"
+              [formControlName]="field.paramName" 
+              class="w-full rounded-3xl border border-n30 bg-secondary1/5 px-6 py-2.5 dark:border-n500 dark:bg-bg3 md:py-3" 
+              [placeholder]="'Enter ' + field.paramName"
+              [id]="field.paramName"
+              [attr.maxLength]="field.maxLength" 
+              [attr.minLength]="field.minLength"
+              [required]="field.optional === 'false'"
+            />
+            <div *ngIf="paymentForm.get(field.paramName)?.invalid && paymentForm.get(field.paramName)?.touched" class="text-red-600">
+              {{ getErrorMessage(field.paramName, field.regex) }}
+            </div>
+             <!-- Display Regex or No Regex Defined -->
+             <!-- <div class="text-gray-500 text-sm md:text-xs mt-2">
+              <div *ngIf="field.regex">
+                <strong>Example:</strong> {{ generateExample(field.regex) }}
+              </div>
+            </div> -->
+          </div>
+      
+          <!-- Submit Button -->
+          <div class="col-span-2 mt-4">
+            <button class="btn flex w-full justify-center" type="submit">Fetch Bill</button>
+          </div>
+        </div>
+      </form>
+      
+      
+
+    </div>
+  </div>
+  

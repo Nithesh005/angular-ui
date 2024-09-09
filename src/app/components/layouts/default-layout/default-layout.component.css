@@ -1,0 +1,96 @@
+/* .submenu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding-left: 10px;
+}
+
+.submenu-btn i {
+  margin-right: 8px; 
+  transition: transform 0.3s ease-in-out;
+}
+
+.submenu-link {
+  display: flex;
+  align-items: center;
+  padding-left: 20px; 
+}
+
+.rotate-icon {
+  transform: rotate(90deg);
+}
+
+.submenu, .nested-submenu {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-in-out;
+}
+
+.submenu-show, .nested-submenu-show {
+  max-height: 500px; 
+} */
+
+
+.menu-ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menu-li {
+  margin: 0;
+  padding: 0;
+}
+
+.menu-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  text-align: left;
+}
+
+.submenu-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  text-align: left;
+}
+
+.submenu-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px 10px 30px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.plus-minus {
+  transition: transform 0.3s ease-in-out;
+}
+
+.submenu, .nested-submenu {
+  max-height: 0;
+  overflow: hidden;
+ 
+}
+
+.submenu-show, .nested-submenu-show {
+  max-height: 500px; 
+  margin-left:1rem;
+}
+
+.submenu-heading{
+  font-weight: 500;
+    margin-left: 2.7rem !important;
+
+}
